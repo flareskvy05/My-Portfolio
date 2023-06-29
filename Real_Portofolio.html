@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEC PORTO</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Belanosima;
+        --primary: rgb(0, 6, 25);
+        --secondary: rgb(0, 250, 92);
+        --third: rgb(0, 180, 66);
+        
+
+      }
+
+      body {
+        background-color: rgb(31, 31, 41);
+        overflow-x: hidden;
+        font-size: 1.5rem;
+      }
+
+      nav {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        width: 20vw;
+        position: fixed;
+        height: 100vh;
+        background-color: var(--primary);
+        /* justify-content: center; */
+        animation: navSlide 0.7s;
+        z-index: 9999;
+      }
+
+      @keyframes navSlide {
+        from {
+          opacity: 0;
+          left: -500px;
+        }
+
+        to {
+          opacity: 1;
+          left: 0;
+        }
+      }
+
+      nav h1 {
+        color: rgb(255, 255, 255);
+        justify-self: start;
+        margin-bottom: 10px;
+      }
+
+      nav .head {
+        display: grid;
+        grid-template-columns: 13fr 1fr;
+      }
+      nav .header {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+      }
+
+      nav .header .border {
+        position: absolute;
+        left: 47.5px;
+        display: block;
+        border-radius: 50%;
+        color: transparent;
+        border: 3px solid white;
+        width: 210px;
+        height: 210px;
+        justify-self: center;
+        z-index: 3;
+      }
+      nav .header img {
+        margin: 10px auto;
+        width: 70%;
+        background-size: cover;
+        justify-self: center;
+        border-radius: 50%;
+        transition: 0.2s all ease-in-out;
+      }
+
+      nav .header img:hover {
+        border: 1.5px solid white;
+      }
+
+      nav .header p {
+        display: block;
+        position: absolute;
+        top: 235px;
+        left: 115px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.2s;
+        z-index: 9;
+      }
+
+      nav .header p:hover {
+        color: black;
+        background-color: white;
+      }
+
+      nav .header .list-item {
+        margin-top: 40px;
+        color: white;
+      }
+
+      nav .header .list-item a {
+        font-size: 1.5rem;
+        display: block;
+        border-radius: 0.8rem;
+        background-color: var(--secondary);
+        text-decoration: none;
+        margin: 16px auto;
+        padding: 10px;
+        color: black;
+        /* transition: all 0.1s ease-in; */
+      }
+
+      nav .header .list-item a:hover {
+        font-size: 1.29rem;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+      }
+
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        height: 20px;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .menu-toggle input {
+        position: absolute;
+        width: 40px;
+        height: 28px;
+        left: -6px;
+        top: -3px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background-color: rgb(115, 184, 254);
+        border-radius: 3px;
+        transition: all 0.5s;
+      }
+
+      /* hamburger menu animation */
+      .menu-toggle span:nth-child(2) {
+        transform-origin: 0 0;
+      }
+      .menu-toggle span:nth-child(4) {
+        transform-origin: 0 100%;
+      }
+
+      .menu-toggle input:checked ~ span:nth-child(2) {
+        transform-origin: 0 0;
+        transform: rotate(45deg) translate(-1px, -1px);
+      }
+      .menu-toggle input:checked ~ span:nth-child(4) {
+        transform-origin: 0 100%;
+        transform: rotate(-45deg) translate(-1px, 0);
+      }
+      .menu-toggle input:checked ~ span:nth-child(3) {
+        transform: scale(0);
+        opacity: 0;
+      }
+      /* black while nav exists */
+      .headed-b {
+        z-index: 5000;
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.7;
+      }
+
+      .headed {
+        margin: 20px;
+        display: block;
+        position: fixed;
+        width: 60px;
+        background-size: cover;
+        border-radius: 50%;
+        transition: 0.1s ease-in all;
+        filter: drop-shadow(3px 3px 5px rgb(0, 0, 0.7));
+        z-index: 99993;
+        cursor: pointer;
+      }
+
+      .headed:hover {
+        opacity: 0.87;
+      }
+
+      .main-content {
+        position: relative;
+        display: grid;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        height: 65vh;
+        background-image: url(swiss-wallpaper.jpg);
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+      }
+
+      @keyframes slideImg {
+        from {    
+          top: -600px;
+        }
+
+        to {
+          top: 0;
+        }
+      }
+
+      .main-content .robot-c {
+        display: none;
+        background-image: url(robot_cute.png);
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        animation: slideImg 0.5s ease-in;
+        z-index: 2;
+      }
+
+      
+
+      .main-content .tokyo {
+        display: none;
+        background-image: url(tokyo.jpg);
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        animation: slideImg 0.5s ease-in;
+        z-index: 3;
+      }
+
+      .main-content .gravity {
+        display: none;
+        background-image: url(gravityArt.jpg);
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        animation: slideImg 0.5s ease-in;
+        z-index: 4;
+      }
+
+      .main-content h1 {
+        margin-left: 40px;
+        margin-top: 170px;
+        color: white;
+        font-size: 2.8rem;
+        z-index: 9;
+
+      }
+
+      .main-content p {
+        position: relative;
+        margin-left: 40px;
+        color: white;
+        top: -70px;
+        font-size: 1.9rem;
+        z-index: 9;
+
+      }
+
+      .main-content span {
+        color: var(--secondary);
+        z-index: 9;
+      }
+
+      .main-content .black-bg {
+        position: absolute;
+        display: block;
+        background-color: black;
+        opacity: 0.7;
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        z-index: 8;
+      }
+
+      .acc-1 {
+        z-index: 10;
+        position: absolute;
+        border: 3px solid var(--secondary);
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        color: transparent;
+      }
+
+      .container-zoom {
+        position: absolute;
+        z-index: 50000;
+        display: none;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .zoomP {
+        width: 800px;
+        height: 800px;
+        margin: auto;     
+      }
+
+      .cancel {
+        border-radius: 50%;
+        width: 80px;
+        padding: 4px;
+        position: absolute;
+        background-color: white;
+        top: 5vh;
+        left: 73vw;
+        transition: all ease-in-out 0.2s;
+      }
+
+      .cancel:hover{
+        background-color: #c4c4c4;
+      }
+      
+      .intro {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+        margin: 30px auto;
+        border: 2px solid rgb(39, 39, 39);
+        border-radius: 20px;
+        padding: 30px;
+      }
+
+
+      
+      .intro span {
+        color: var(--secondary);
+      }
+      
+      .intro img{
+        position: relative;
+        border: 1px solid white;
+        width: 86%;
+        border-radius: 20px;
+        margin-right: 20px;
+        transition: all ease-in-out 0.5s;
+      }
+
+      .intro img:hover {
+        width: 100%;
+        transform: rotate(7.5deg);
+      }
+
+      .intro article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .intro p {
+        text-align: start;
+        color: white;
+        font-size: 1.5rem;
+        margin-top: 30px;
+      }
+
+
+      .intro h1 {
+        text-align: left;
+        color: var(--secondary);
+      }
+
+      .portfolio {
+        background-color: rgb(27, 27, 36);
+        padding: 20px;
+        margin: 40px auto;
+        width: 87%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+      }
+
+      .portfolio h1 {
+        font-size: 2.4rem;
+        color: var(--secondary);
+      }
+
+       .port-grid {
+        /* border: 2px solid rgb(39, 39, 39); */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        margin: 30px auto;
+        padding: 20px;
+        justify-content: center;
+      }
+
+
+       .port-grid .card {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        border: 2px solid rgb(39, 39, 39);
+        border-radius: 8px;
+        margin-left: 4px;
+        margin-bottom: 15px;
+      }
+
+      .port-grid .card:hover {
+        border: 2px solid rgb(90, 90, 90);
+      }
+
+      .port-grid .card p {
+        text-align: center;
+        color: white;
+      }
+
+      .port-grid .card h1 {
+        text-align: center;
+      }
+
+       .port-grid .card img {
+        width: 90%;
+        border-radius: 8px;
+        transition: 0.15s ease-in-out;
+      }
+
+
+      .port-grid .card img:hover {
+        transform: scale(1.04);
+        filter: drop-shadow(3px 0 5px black);
+      }
+
+      .advance {
+        margin: 10px auto;
+        padding: 7px;
+        display: block;
+        font-size: 1.29rem;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+
+      .advance:hover {
+        font-size: 1.5rem;
+        color: black;
+        background-color: var(--secondary);
+        border: 0 solid white;
+      }
+
+      
+
+      .container-L {
+        margin: 50px auto;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container-L img {
+        opacity: 0.4;
+        margin: 0 50px;
+        transition: 0.2s ease-in-out;
+      }
+
+      .container-L img:hover {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+
+      footer {
+        background-color: var(--third);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+        footer a {
+          color: black;
+          font-size: 1.4rem;
+          text-decoration: none;
+        }
+
+        footer .linked {
+          margin: 10px auto;
+        }
+
+        .kopirek {
+          margin: 0 auto;
+        }
+
+        .slider input {
+          display: none;
+          margin: 20px auto;
+          z-index: 99999;
+          color: white;
+        }
+
+        .nav-manual {
+          z-index: 99999;
+          position: absolute;
+          width: 90%;
+          margin-top: 40px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .manual-btn:not(:last-child){
+          margin-right: 40px;
+        }
+
+        .container-slider {
+          display: flex;
+          justify-content: center;
+        }
+
+        .manual-btn{
+          position: relative;
+          z-index: 999;
+          border: 2px solid lightcyan;
+          padding: 5px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: 0.4s;
+          width: 7px;
+          height: 7px;
+        }
+
+        .manual-btn:hover {
+          background-color: lightcyan;
+        }
+
+        .manual-btn .ket {
+          opacity: 0;
+          font-size: 1rem;
+          display: block;
+          padding: 5px;
+          border: 0 solid white;
+          color: white;
+          background-color: black;
+          position: absolute;
+          top: 24px;
+          left: -23px;
+          border-radius: 7px;
+        }
+
+        form {
+          margin: 25px auto;
+          display: flex;
+          flex-direction: column;
+          width: 85%;
+        }
+
+        form .child {
+          background-color: rgb(27, 27, 36);
+          border: 2px solid rgb(40, 40, 53);
+          color: white;
+          font-size: 1.7rem;
+          padding: 7px;
+          margin: 15px 0;
+        }
+
+        form .child:hover {
+          border: 2px solid rgb(62, 62, 83);
+        }
+
+      
+
+        .python-container {
+          overflow-y: scroll;
+          z-index: 99992;
+          position: fixed;
+          margin: 0 30px 30px 30px;
+          padding: 20px 40px 40px 40px;
+          width: 91.5%;
+          height: 93.5vh;
+          display: none;
+          background-color: rgb(41, 41, 54);
+          color: white;
+          border-radius: 40px;
+          animation: popup 0.5s;
+        }
+
+        .cancelPython {
+          display: none;
+          border-radius: 50%;
+          z-index: 99993;
+          background-color: rgb(184, 184, 184);
+          position: fixed;
+          top: 2vh;
+          right: 4vw;
+          width: 40px;
+          animation: cancelP 0.5s;
+        }
+
+
+        .cancelPython:hover {
+          background-color: rgb(255, 255, 255);
+          color: white;
+        }
+
+        .python-container h1  {
+          margin: 30px 0;
+          color: var(--secondary);
+         text-align: center;
+          font-size: 2rem;
+        }
+
+        .python-container p  {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+
+        .python-container picture {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-areas: 
+          'left right-1'
+          'left right-2';
+          gap: 20px;
+          justify-items: center;
+          margin: 20px 0;
+        }
+
+        .python-container .right-1 {
+          border-radius: 20px;
+          grid-area: right-1;
+        }
+
+        .python-container .right-2 {
+          grid-area: right-2;
+        }
+
+        .python-container .left {
+          grid-area: left;
+          width: 480px;
+        }
+
+        @keyframes popup {
+          from{
+            top: -800px;
+          }
+
+          to {
+            top: 0;
+          }
+        }
+        
+          @keyframes cancelP {
+          from{
+            top: -800px;
+          right: 4vw;
+          }
+
+          to {
+            top: 2vh;
+          right: 4vw;
+          }
+        }
+
+        .python-container video {
+          display: block;
+          margin: 30px auto;
+        }
+
+        .python-container .un {
+          width: 40vw;
+          display: block;
+          margin: 25px auto;
+        }
+
+        .python-container .pic {
+          display: grid;
+          grid-template-columns: repeat(2,1fr);
+          justify-content: space-evenly;
+        }
+
+        
+
+      /* Responsive Breakpoints */
+
+      @media (max-width: 450px) {
+        nav {
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        width: 67vw;
+        position: fixed;
+        height: 100vh;
+        background-color: var(--primary);
+        /* justify-content: center; */
+        animation: navSlide 0.7s;
+        z-index: 9999;
+      }
+
+      .main-content {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .main-content .black-bg {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .main-content .robot-c{
+        background-position: center;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .main-content .tokyo{
+        background-position: center;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .main-content .gravity{
+        background-position: center;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .main-content p {
+        margin-top: 80px;
+      }
+
+        .intro {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .intro img {
+        margin-bottom: 20px;
+      }
+
+      .port-grid {
+        /* border: 2px solid rgb(39, 39, 39); */
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        margin: 30px auto;
+        padding: 20px;
+        justify-items: center;
+      }
+
+      .port-grid .card {
+        margin-right: 47px;
+      }
+
+
+      .container-L {
+        margin: 50px auto;
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container-L img {
+        margin-top: 20px;
+        opacity: 1;
+      }
+
+      .python-container {
+          margin: 0;
+          padding: 10px;
+          width: 95%;
+          height: 100vh;
+          display: none;
+          background-color: rgb(41, 41, 54);
+          color: white;
+          border-radius: 40px;
+          animation: popup 0.5s;
+          overflow-x: none;
+        }
+
+        .python-container p {
+          margin-bottom: 36px;
+        }
+
+        .python-container h1  {
+          text-align: left;
+          margin: 50px 0;
+        }
+
+        .python-container picture {
+          grid-template-areas: 
+          'left'
+          'right-2';
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: 1fr;
+          display: grid;
+          gap: 20px;
+          justify-items: center;
+          align-content: center;
+          margin: 20px 0;
+        }
+
+        .python-container .right-1 {
+          display: none;
+        }
+
+        .python-container .left {
+          width: 400px;
+        }
+
+        .python-container video {
+          width: 93%;
+          display: block;
+          margin: 30px auto;
+        }
+
+        .python-container .pic {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(2, 1fr);
+        }
+
+        .python-container .un {
+          width: 80vw;
+        }
+      }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet">     
+  </head>
+  <body>
+
+      <img src="x.svg" alt="" class="cancelPython">
+      <div class="python-container">
+          <h1>Portofolio#1 : Kinematics Program Using Python</h1>
+          <picture>
+            <img src="ProgramKinematika.jpg" alt="" width="400" class="right-1">
+            <img src="kinematics_front.png" alt=""  class="left">
+            <img src="python.png" alt="" width="200"  class="right-2">
+          </picture>
+          <article>
+            <p>Untuk pertama kali saya mempelajari bahasa pemrograman, selalu terlintas kebingungan di dalam pikiran,
+               karena banyaknya bahasa pemrograman yang tersedia. Setelah saya mempertimbangkan semuanya itu, akhirnya
+               aku memutuskan untuk mempelajari python sebagai bahasa pemrograman pertama yang aku pelajari.
+               Terdapat alasan aku memutuskan untuk memilih bahasa itu, seperti kemudahan dalam menulis sintaksnya,
+               ramah untuk pemula, banyak diterapkan di berbagai bidang seperti IoT, machine-learning, dll..
+            </p>
+            <p>Setelah mempelajari hal-hal mendasar python, aku pun berinisiatif untuk menerapkannya pada
+              pengembangan aplikasi desktop menggunakan library Tkinter sebagai portofolio pertama di bahasa
+              pemrograman Python.
+            </p>
+            <p>Aplikasi yang saya kembangkan yaitu membuat program kinematika sederhana pada konsep mekanika
+              dalam ilmu fisika, tentunya menggunakan algoritma sederhana aritmetika di dalamnya serta konsep
+              dasar turunan untuk konversi fungsi jarak menjadi kecepatan dan percepatan.
+            </p>
+          </article>
+          <article>
+            <h1>Detail Setiap Komponen</h1>
+            <p>Sebelum membahas secara detail mengenai setiap komponen-kompoonen
+              pada aplikasi program, saya menaruh satu video demonstrasi mengenai
+              penggunaan sederhana dari aplikasi tersebut. Selamat menonton :>
+            </p>
+            <video src="GASS_INI.mp4" width="720" controls></video>
+            <p>Gimana :>, biar makin paham sebenarnya program kinematika itu apa ya?
+              Di sini, kita harus mengenal konsep GLB dan GLBB pada fisika agar lebih
+              mudah dalam mengoperasikan program.
+              lebih lanjutnya bisa Anda cek di laman berikut:
+              <a href="https://ipa.pelajaran.co.id/kinematika/" style="color: var(--secondary);">Konsep Kinematika Fisika</a>
+            </p>
+            <img src="F1.jpg" alt="F1" class="un">
+            <h1>1. Komponen Calculate X(t) dan V(t)</h1>
+              <img src="part-1.png" alt="" class="un">
+            <p>
+              Pada gambar, terdapat 'CALCULATE X(t)' artinya kita hitung jarak akhir setelah
+              menempuh waktu tertentu - tentunya dengan satuan SI, apa saja yang bisa kita input
+              dari perhitungan tersebut? jika kita ketahui nilai posisi awal dan kecepatan awal, maka kita input semua
+              yang tertera di situ. Namun bisa kita input 0 pada posisi awal dan kecepatan awal.
+            </p>
+            <p>
+              Selain itu, terdapat 'CALCULATE V(t)' artinya kita hitung kecepatan akhir setelah
+              menempuh waktu tertentu, di sini kita tidak perlu input posisi awal karena
+              tidak dipengaruhi oleh posisi awalnya. Secara otomatis akan hitung nilai
+              v(t) meskipun tidak kita input posisi awalnya.
+            </p>
+
+            
+              <img src="part-4.png" alt="run-time-error" class="un"> 
+            <p>
+              Perlu diperhatikan juga bahwa untuk input nilai pada keempat parameter di atas
+              harus dalam integer atau float (angka). Akan terdeteksi 'run time error' jika kita
+              masukkan selain format tersebut sebagaimana tertera pada gambar.
+            </p>
+            <p>
+              Setelah kalkulasi akan kita peroleh hasilnya sebagaimana pada gambar di bawah:
+            </p>
+            <div class="pic">
+              <img src="part-2.png" alt="result" class="un">
+              <img src="part-3.png" alt="result" class="un">
+            </div>
+            <h1>2. Komponen Grafik Kinematika</h1>
+            <img src="part-5.png" alt="" class="un">
+            <p>Selain mampu menghitung posisi dan kecepatan akhir, kita juga bisa simulasi
+              sebuah grafik fungsi kinematika terhadap waktu. Penjelasan mengenai grafik GLB maupun
+              GLBB dapat anda akses di sini: 
+              <a href="https://ipa.pelajaran.co.id/kinematika/" style="color: var(--secondary);">Konsep Kinematika Fisika</a>
+            </p>
+            <img src="matplotlib.png" alt="matplotlib" class="un">
+            <p>Untuk akses fitur tersebut dapat Anda klik 'GRAPH (UJI_COBA)', kita dapat input nilai
+              koefisien a, b, dan c berupa integer atau float (angka) yang telah disediakan pada program.
+              Nantinya akan menghasilkan output berupa interpretasi grafik menggunakan library
+              <a href="https://matplotlib.org/" style="color: var(--secondary);">Matplotlib</a>,
+              adapun contohnya sebagaimana ditampilkan:
+            </p>
+            <img src="part-6.png" alt="grafik-matplotlib" class="un">
+            <p>Pada grafik, terdapat informasi fungsi X(t), V(t), dan percepatan sesuai
+              dengan yang kita input sebelumnya. Anda juga dapat simpan hasil grafiknya
+              ke dalam format gambar pada tombol logo 'save'.
+            </p>
+            <h1>3. Source Code</h1>
+            <p>Jika Anda ingin mencoba program kinematika yang telah saya buat, saya akan bagikan
+              melalui repository saya melalu layanan GithubPages, link tertera:
+              <a href="#" style="color: var(--secondary);">Download Source Code beserta file yang dibutuhkan pada program</a>
+            </p>
+            <h1>Kesimpulan</h1>
+            <p>Itulah program yang telah saya rancang menggunakan bahasa pemrograman Python? :>
+              kedepannya saya berencana untuk menambah banyak projek di website portofolio ini.
+              Terima kasih telah membaca dokumentasi sederhana saya. Semoga dengan projek ini
+              Anda semakin tertarik di dunia pemrograman. <i>Thank you ~~ :></i>
+            </p>
+            
+            
+
+
+            
+
+          </article>
+      </div>
+    
+    <div class="container-zoom">
+      <img src="x.svg" alt="" class="cancel">
+      <img src="flareskvy_edit.jpg" alt="" class="zoomP">
+    </div>
+    <div class="headed-b"></div>
+    <img src="flareskvy_edit.jpg" alt="" class="headed" />
+    <nav>
+      <div class="head">
+        <h1>Flareskvy</h1>
+        <div class="menu-toggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="header">
+        <img src="flareskvy_edit.jpg" alt="" class="zoomPic"/>
+        <div class="list-item">
+          <a href=""><b>Dashboard</b></a>
+          <a href="#intro"><b>About Me</b></a>
+          <a href="#skills"><b>Skills</b></a>
+          <a href="#portfolio"><b>Portfolio</b></a>
+          <a href="#blog"><b>Blog</b></a>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      <h1>Halo, <span>Flareskvy</span> di sini...</h1>
+      <p>
+        Masih pelajar SMA, suka pemrograman, bukan di luar <del>nayla</del>
+        <ins>nalar</ins>... :>
+      </p>
+      <div class="robot-c"></div>
+      <div class="tokyo"></div>
+      <div class="gravity"></div>
+
+
+      <div class="container-slider">
+        <div class="radio-1 manual-btn"><div class="ket">Default</div></div>
+        <div class="radio-2 manual-btn"></div>  
+        <div class="radio-3 manual-btn"></div>      
+        <div class="radio-4 manual-btn"></div>      
+      </div>
+      <div class="acc-1"></div>
+      <div class="black-bg"></div>
+    </div>
+    <div class="intro">
+      <img src="baliEdit.jpg" alt="Pulau_Penyu_Bali" id="intro">
+      <article>
+        <h1 >About Me</h1>
+        <hr>
+        <p>
+          Perkenalkan, saya <span>Ferdy Rahmat Kurniadi</span> yang akan menyampaikan
+          segala hal yang ingin kutampilkan di halaman website ini.
+          Tentunya, bagaimana pengalamanku belajar pemrograman, membuat
+          projek sederhana, hingga blog yang bermanfaat untuk menambah
+          wawasan. Perlu diperhatikan bahwa portofolio ini saya tidak menggunakan <i>framework</i>
+          atau <i>library</i> apapun, artinya murni menggunakan html, css, dan javascript :]
+        </p>
+        </article>
+    </div>
+    <h1 style="color: var(--secondary); margin-left: 30px;" id="skills">My Skills</h1>
+      <p style="color: white; margin-left: 30px;">
+        Untuk saat ini belum banyak bahasa pemrograman yang saya kuasai
+        lebih dalam, saya lebih fokus untuk beberapa bahasa yang relevan
+        dan mudah untuk diikuti khususnya saya sebagai pemula murni nol
+        pengetahuan IT :]
+      </p>
+      <section class="container-L"><img
+        src="python.png"
+        alt="python_icon"
+        width="130px"
+    />
+    
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/1532/1532556.png"
+      alt="html_icon"
+      width="140px"
+      height="140px"
+      
+    />
+    <img
+      src="https://static-00.iconduck.com/assets.00/file-type-css-icon-1806x2048-r5fwjl3p.png"
+      alt="css_icon"
+      width="126px"
+      height="138px"
+      
+    />
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png"
+      alt="js_icon"
+      width="130px"
+      height="130px"
+      
+    />
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png"
+        alt="bootstrap_icon"
+        width="163px"
+        height="130px"
+        
+    />
+    <img src="Git-Icon-1788C.png" alt="git_icon" width="130px"
+    height="130px">
+  </section>
+    <div class="portfolio" id="portfolio">
+      <h1>My Portfolio</h1>
+      <p style="font-style: 1.95rem; color: #ffffff;">Ini beberapa projek yang kuselesaikan baru-baru ini,
+        <i>next</i>-nya bakalan nambah lagi...
+      </p>
+      <section class="port-grid">
+        <div class="card">
+          <img src="ProgramKinematika.jpg" alt="" >
+          <h1>Program Kinematika</h1>
+          <p><b>Python ~</b> Membuat algoritma sederhana dari konsep
+            kinematika GLB/GLBB serta interpretasi grafik kuadratik
+            kinematika sederhana
+          </p>
+          <div class="advance"id="lanjutPython">Lebih Lanjut</div>
+        </div>
+        <div class="card">
+          <img src="garage-18.jpg" alt="">
+          <h1>Website Otomotif</h1>
+          <p><b>Website ~</b> Membuat website Otomotif informasi mobil kece :]
+          </p>
+          <a href="portofolio_Vanilla.html" style="text-decoration: none;"><div class="advance">Lebih Lanjut</div></a>
+        </div>
+        <div class="card">
+          <img src="ProgramKinematika.jpg" alt="">
+          <h1>Bootstrap Website</h1>
+          <p><b>Website ~</b> Membuat website portfolio menggunakan framework bootstrap
+          </p>
+          <a href="PORTOFOLIO.html" style="text-decoration: none;"><div class="advance">Lebih Lanjut</div></a>
+        </div>
+        <div class="card">
+          <img src="ProgramKinematika.jpg" alt="">
+          <h1>Program Kinematika</h1>
+          <p><b>Python ~</b> Membuat algoritma sederhana dari konsep
+            kinematika GLB/GLBB serta interpretasi grafik kuadratik
+            kinematika sederhana
+          </p>
+          <div class="advance">Lebih Lanjut</div>
+        </div>
+        <div class="card">
+          <img src="ProgramKinematika.jpg" alt="">
+          <h1>Program Kinematika</h1>
+          <p><b>Python ~</b> Membuat algoritma sederhana dari konsep
+            kinematika GLB/GLBB serta interpretasi grafik kuadratik
+            kinematika sederhana
+          </p>
+          <div class="advance">Lebih Lanjut</div>
+        </div>
+        <div class="card">
+          <img src="ProgramKinematika.jpg" alt="">
+          <h1>Program Kinematika</h1>
+          <p><b>Python ~</b> Membuat algoritma sederhana dari konsep
+            kinematika GLB/GLBB serta interpretasi grafik kuadratik
+            kinematika sederhana
+          </p>
+          <div class="advance">Lebih Lanjut</div>
+        </div>
+        
+      </section>
+    </div>
+
+    <form action="">
+      <input type="text" placeholder="Nama" class="child" />
+      <input type="text" placeholder="Surel" class="child" />
+      <input type="text" placeholder="Telp" class="child" />
+      <textarea
+      class="child"
+          name=""
+          id=""
+          cols="40"
+          rows="7"
+          placeholder="Pesan atau umpan balik yang ingin disampaikan ( untuk saat ini belum bisa kirim apapun :[ )"
+        ></textarea>
+    </form>
+    
+<footer>
+  <div class="linked">
+    <a href="">First</a>
+    <a href="">Second</a>
+    <a href="">Third</a>
+    <a href="">etc...</a>
+  </div>
+  <br />
+  <p class="kopirek">Copyright @2023 | Flareskvy</p>
+</footer>
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle input");
+      const headPic = document.querySelector(".headed");
+      const nav = document.querySelector("nav");
+      const acc1 = document.querySelector(".acc-1");
+      const headedB = document.querySelector(".headed-b");
+      const containerZoom = document.querySelector('.container-zoom');
+      const zoomPic = document.querySelector('.zoomPic');
+      const cancel = document.querySelector('.cancel');
+      const linking = document.querySelectorAll('nav .header .list-item a')
+
+
+      
+      headPic.addEventListener("click", function () {
+        headPic.style.display = "none";
+        nav.style.display = "flex";
+        acc1.style.border = "3px dashed white";
+        headedB.style.display = "block";
+      });
+      
+      menuToggle.addEventListener("click", function () {
+        headPic.style.display = "block";
+        nav.style.display = "none";
+        headedB.style.display = "none";
+        acc1.style.border = "3px solid var(--secondary)";
+      });
+
+      zoomPic.addEventListener('click', function (){
+        containerZoom.style.display = 'flex';
+        nav.style.display = 'none';
+      })
+
+      cancel.addEventListener('click',function(){
+        containerZoom.style.display = 'none';
+        nav.style.display = 'flex';
+      })
+
+      linking.forEach((element) => {
+        element.onclick = (e) => {
+        headPic.style.display = "block";
+        nav.style.display = "none";
+        headedB.style.display = "none";
+        acc1.style.border = "3px solid var(--secondary)";
+      }
+    }
+  )
+
+  window.onclick = (e) => {
+        if (e.target === headedB) {
+          nav.style.display = "none";
+          headedB.style.display = "none";
+          headPic.style.display = "block";
+        acc1.style.border = "3px solid var(--secondary)";
+        }
+      };
+      const mainContent = document.querySelector('.main-content')
+      const robotImg = document.querySelector('.main-content .robot-c')
+      const tokyoImg = document.querySelector('.main-content .tokyo')
+      const gravImg = document.querySelector('.main-content .gravity')
+      const ket = document.querySelector('.ket')
+      const radio1 = document.querySelector('.radio-1')
+      const radio2 = document.querySelector('.radio-2')
+      const radio3 = document.querySelector('.radio-3')
+      const radio4 = document.querySelector('.radio-4')
+
+      radio1.addEventListener('mouseenter', function () {
+        ket.style.opacity = '1'
+      })
+
+      radio1.addEventListener('mouseleave', function () {
+        ket.style.opacity = '0'
+      })
+
+      radio1.addEventListener('click', function (){
+        robotImg.style.display = 'none'
+        tokyoImg.style.display = 'none'
+        gravImg.style.display = 'none'
+      })
+
+      radio2.addEventListener('click', function () {
+        robotImg.style.display = 'block'
+        tokyoImg.style.display = 'none'
+        gravImg.style.display = 'none'
+      })
+
+      radio3.addEventListener('click', function () {
+        tokyoImg.style.display = 'block'
+        gravImg.style.display = 'none'
+      })
+
+      radio4.addEventListener('click', function () {
+        gravImg.style.display = 'block'
+      })
+
+      const cancelP = document.querySelector('.cancelPython')
+      const pythonC = document.querySelector('.python-container')
+      const lanjutPython = document.getElementById('lanjutPython')
+
+      lanjutPython.addEventListener('click', function() {
+        pythonC.style.display = 'block'
+        cancelP.style.display = 'block'
+        headPic.style.display = 'none'
+      })
+
+      cancelP.addEventListener('click',  function () {
+        pythonC.style.display = 'none'
+        cancelP.style.display = 'none'
+        headPic.style.display = 'block'
+      })
+    </script>
+  </body>
+</html>
